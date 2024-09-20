@@ -3,7 +3,7 @@
 ## Setup
 1. install python (locally running 3.7.2)
 2. follow Installation, Setup, and Authentication from https://github.com/uberfastman/yfpy
-	* stop at "Note: If you are only planning on using YFPY to pull "read only" data from public leagues, you do not need to do this."
+	* for Setup: stop at "Note: If you are only planning on using YFPY to pull "read only" data from public leagues, you do not need to do this."
 
 ## Config
 in fantasyTeamAgg.py you need to set
