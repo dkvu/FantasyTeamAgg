@@ -9,7 +9,6 @@ class TeamStats:
 
 	def add_week(self):
 		self.weekly_stats.append(WeekStat())
-		return self.weekly_stats[-1]
 
 	def add_points(self, points, player_name: str):
 		self.weekly_stats[-1].add(points, player_name.decode("utf-8"))
