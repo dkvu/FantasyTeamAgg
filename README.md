@@ -11,6 +11,7 @@ in fantasyTeamAgg.py you need to set
 	* on browser, sign into yahoo sports and navigate to your league
 	* in the url you should see f1/followed by an int (your league id)
 	* ex. football.fantasysports.yahoo.com/f1/730330, league id = 730330
+	* or on the phone app under league settings
 * player_id:
 	* tedious but use your league url and append 1-12
 	* ex: football.fantasysports.yahoo.com/f1/730330/1, will tell you who player_id=1 is
