@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/4871fc3b-dc4a-48e2-9a36-8b938be05c6a)# FantasyTeamAgg
+# FantasyTeamAgg
 
 ## Setup
 (Wrapper / ref https://github.com/uberfastman/yfpy)
