@@ -1,9 +1,13 @@
-# FantasyTeamAgg
+![image](https://github.com/user-attachments/assets/4871fc3b-dc4a-48e2-9a36-8b938be05c6a)# FantasyTeamAgg
 
 ## Setup
+(Wrapper / ref https://github.com/uberfastman/yfpy)
 1. install python (locally running 3.7.2)
-2. follow Installation, Setup, and Authentication from https://github.com/uberfastman/yfpy
-	* for Setup: stop at "Note: If you are only planning on using YFPY to pull "read only" data from public leagues, you do not need to do this."
+2. pip install yfpy
+3. https://developer.yahoo.com/oauth2/guide/openid_connect/getting_started.html
+	* Just the I. Setting Up: Create an Application ... (If I'm remembering right)
+4. https://github.com/uberfastman/yfpy?tab=readme-ov-file
+   	* Usage -> Authentication
 
 ## Config
 in fantasyTeamAgg.py you need to set
