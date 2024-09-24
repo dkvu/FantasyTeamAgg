@@ -1,32 +1,20 @@
+import yaml
+
 from pathlib import Path
 from yfpy.query import YahooFantasySportsQuery
 from team import TeamStats
 
 def main():
-	league_id = '730330'
+	config = yaml.safe_load(open('./config.yml'))
 
-	team_a_ids = {
-		4, #khang
-		6, #bhoang
-		8, #tin
-		9, #viv
-		11, #lieu
-		12, #dalz
-	}
-	team_a = TeamStats("Vivian", team_a_ids)
+	team_a = TeamStats(config['team_a_name'], set(config['team_a_ids']))
+	team_b = TeamStats(config['team_b_name'], set(config['team_b_ids']))
 
-	team_b_ids = {
-		1, #wu
-		2, #hansel
-		3, #cao
-		5, #dimitry
-		7, #josh
-		10, #nam
-	}
-	team_b = TeamStats("Josh", team_b_ids)
+	def run_on_teams(func):
+		func(team_a)
+		func(team_b)
 
-
-	query = YahooFantasySportsQuery(Path("."), league_id=league_id)
+	query = YahooFantasySportsQuery(Path("."), league_id=config['leauge_id'])
 	
 	current_week = get_current_week(query) - 1
 	print( f'Current Week: {current_week}')
@@ -34,8 +22,7 @@ def main():
 	for week in range(1,current_week+1):
 		print(f'Gathering stats for week: {week}')
 
-		team_a.add_week()
-		team_b.add_week()
+		run_on_teams(TeamStats.add_week)
 
 		scoreboard = query.get_league_scoreboard_by_week(week)
 		for matchup in scoreboard.matchups:
@@ -47,26 +34,24 @@ def main():
 				elif team.team_id in team_b.player_ids:
 					team_b.add_points(team.team_points.total, team.name)
 				else:
-					raise Exception(f'Team Id ({team.id}) not part of any team.')
-
-	curr_a = team_a.get_current_week()
-	curr_b = team_b.get_current_week()
+					raise Exception(f'Team Id ({team.team_id}) not part of any team.')
 
 	print()
 	print("###### SUMMARY ######")
 	print(f'Week {current_week} Top Scorer:')
-	print(f'Team {team_a.name}: {curr_a.high_player_name} ({curr_a.high_points})')
-	print(f'Team {team_b.name}: {curr_b.high_player_name} ({curr_b.high_points})')
+	run_on_teams(TeamStats.print_week_high)
+
+	print()
+	print(f'Week {current_week} Bottom Scorer:')
+	run_on_teams(TeamStats.print_week_low)
 
 	print()
 	print(f'Week {current_week} Team Total:')
-	print(f'Team {team_a.name}: {round(curr_a.total_points,2)}')
-	print(f'Team {team_b.name}: {round(curr_b.total_points,2)}')
+	run_on_teams(TeamStats.print_week_total)
 
 	print()
 	print(f'Season Team Total:')
-	print(f'Team {team_a.name}: {round(team_a.total_points,2)}')
-	print(f'Team {team_b.name}: {round(team_b.total_points,2)}')
+	run_on_teams(TeamStats.print_season_total)
 
 def get_current_week(query):
 	league = query.get_league_info()
