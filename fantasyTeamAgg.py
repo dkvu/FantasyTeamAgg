@@ -1,4 +1,5 @@
 import yaml
+import datetime
 
 from pathlib import Path
 from yfpy.query import YahooFantasySportsQuery
@@ -16,7 +17,8 @@ def main():
 
 	query = YahooFantasySportsQuery(Path("."), league_id=config['leauge_id'])
 	
-	current_week = get_current_week(query) - 1
+	week_adjustment = get_week_adjustment()
+	current_week = get_current_week(query) - week_adjustment
 	print( f'Current Week: {current_week}')
 
 	for week in range(1,current_week+1):
@@ -56,6 +58,16 @@ def main():
 def get_current_week(query):
 	league = query.get_league_info()
 	return league.current_week
+
+def get_week_adjustment():
+	today = datetime.datetime.today()
+	
+	if today.weekday() == 0:
+		print("Today is a monday, no need for adjustment")
+		return 0
+
+	print("Today is not a monday, adjusting to get pervious weeks stats")
+	return 1
 
 if __name__ == "__main__":
 	main()

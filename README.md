@@ -30,5 +30,3 @@ create a config.yml using config.template.yml as reference
 * to run: python fantasyTeamAgg.py
 * Tuesday(ish) marks a new week so if you run the script on tuesday 'current_week = get_current_week(query) - 1' is correct
 * if you run it monday night, it should read 'current_week = get_current_week(query)'
-
-TODO: maybe infer '-1' by the day of the week or take it in as an arg
