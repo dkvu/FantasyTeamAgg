@@ -1,0 +1,19 @@
+leauge_id: "730330"
+
+team_a_name: "Vivian"
+team_a_ids:
+  - 4 #khang
+  - 6 #bhoang
+  - 8 #tin
+  - 9 #viv
+  - 11 #lieu
+  - 12 #dalz
+
+team_b_name: "Josh"
+team_b_ids:
+  - 1 #wu
+  - 2 #hansel
+  - 3 #cao
+  - 5 #dimitry
+  - 7 #josh
+  - 10 #nam
